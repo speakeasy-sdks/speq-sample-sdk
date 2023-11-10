@@ -65,7 +65,7 @@ class Drinks:
 
     
     
-    def list_drinks(self, drink_type: Optional[shared.DrinkType] = None) -> operations.ListDrinksResponse:
+    def list_drinks(self, drink_type: Optional[shared.DrinkType] = None, server_url: Optional[str] = None) -> operations.ListDrinksResponse:
         r"""Get a list of drinks.
         Get a list of drinks, if authenticated this will include stock levels and product codes otherwise it will only include public information.
         """
@@ -73,7 +73,10 @@ class Drinks:
             drink_type=drink_type,
         )
         
-        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
+        base_url = utils.template_url(operations.LIST_DRINKS_SERVERS[0], {
+        })
+        if server_url is not None:
+            base_url = server_url
         
         url = base_url + '/drinks'
         headers = {}

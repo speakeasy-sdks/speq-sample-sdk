@@ -12,7 +12,7 @@ src/speakeasybar/utils/__init__.py
 src/speakeasybar/utils/retries.py
 src/speakeasybar/utils/utils.py
 src/speakeasybar/models/errors/sdkerror.py
-src/speakeasybar/models/operations/authenticate.py
+src/speakeasybar/models/operations/login.py
 src/speakeasybar/models/operations/getdrink.py
 src/speakeasybar/models/operations/listdrinks.py
 src/speakeasybar/models/operations/listingredients.py
@@ -39,9 +39,11 @@ src/speakeasybar/models/shared/__init__.py
 src/speakeasybar/models/callbacks/__init__.py
 src/speakeasybar/models/webhooks/__init__.py
 USAGE.md
-docs/models/operations/authenticaterequestbody.md
-docs/models/operations/authenticateresponsebody.md
-docs/models/operations/authenticateresponse.md
+docs/models/operations/loginsecurity.md
+docs/models/operations/type.md
+docs/models/operations/loginrequestbody.md
+docs/models/operations/loginresponsebody.md
+docs/models/operations/loginresponse.md
 docs/models/operations/getdrinkrequest.md
 docs/models/operations/getdrinkresponse.md
 docs/models/operations/listdrinksrequest.md
