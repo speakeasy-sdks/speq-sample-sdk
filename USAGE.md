@@ -76,4 +76,27 @@ if res.order is not None:
     # handle response
     pass
 ```
+
+### Subscribe to webhooks to receive stock updates
+
+```python
+import speakeasybar
+from speakeasybar.models import operations, shared
+
+s = speakeasybar.Speakeasybar(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY>",
+    ),
+)
+
+req = [
+    operations.RequestBody(),
+]
+
+res = s.config.subscribe_to_webhooks(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
 <!-- End SDK Example Usage [usage] -->

@@ -143,6 +143,29 @@ if res.order is not None:
     # handle response
     pass
 ```
+
+### Subscribe to webhooks to receive stock updates
+
+```python
+import speakeasybar
+from speakeasybar.models import operations, shared
+
+s = speakeasybar.Speakeasybar(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY>",
+    ),
+)
+
+req = [
+    operations.RequestBody(),
+]
+
+res = s.config.subscribe_to_webhooks(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Available Resources and Operations [operations] -->
@@ -179,10 +202,11 @@ if res.order is not None:
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
 
-| Error Object     | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.APIError  | 5XX              | application/json |
-| errors.SDKError  | 400-600          | */*              |
+| Error Object      | Status Code       | Content Type      |
+| ----------------- | ----------------- | ----------------- |
+| errors.BadRequest | 400               | application/json  |
+| errors.APIError   | 5XX               | application/json  |
+| errors.SDKError   | 400-600           | */*               |
 
 ### Example
 
@@ -203,6 +227,9 @@ req = [
 res = None
 try:
     res = s.config.subscribe_to_webhooks(req)
+except errors.BadRequest as e:
+    print(e)  # handle exception
+    raise(e)
 except errors.APIError as e:
     print(e)  # handle exception
     raise(e)
@@ -235,22 +262,21 @@ You can override the default server globally by passing a server name to the `se
 
 ```python
 import speakeasybar
-from speakeasybar.models import operations
+from speakeasybar.models import operations, shared
 
 s = speakeasybar.Speakeasybar(
     server="customer",
+    security=shared.Security(
+        api_key="<YOUR_API_KEY>",
+    ),
 )
 
-req = operations.LoginRequestBody(
-    type=operations.Type.API_KEY,
-)
 
-res = s.authentication.login(req, operations.LoginSecurity(
-    password="<PASSWORD>",
-    username="<USERNAME>",
-))
+res = s.ingredients.list_ingredients(ingredients=[
+    'string',
+])
 
-if res.object is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
@@ -266,22 +292,21 @@ Some of the server options above contain variables. If you want to set the value
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
 import speakeasybar
-from speakeasybar.models import operations
+from speakeasybar.models import operations, shared
 
 s = speakeasybar.Speakeasybar(
     server_url="https://speakeasy.bar",
+    security=shared.Security(
+        api_key="<YOUR_API_KEY>",
+    ),
 )
 
-req = operations.LoginRequestBody(
-    type=operations.Type.API_KEY,
-)
 
-res = s.authentication.login(req, operations.LoginSecurity(
-    password="<PASSWORD>",
-    username="<USERNAME>",
-))
+res = s.ingredients.list_ingredients(ingredients=[
+    'string',
+])
 
-if res.object is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
@@ -386,6 +411,60 @@ if res.object is not None:
 <!-- End Authentication [security] -->
 
 
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+```python
+import speakeasybar
+from speakeasybar.models import operations, shared
+from speakeasybar.utils import BackoffStrategy, RetryConfig
+
+s = speakeasybar.Speakeasybar(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY>",
+    ),
+)
+
+req = [
+    operations.RequestBody(),
+]
+
+res = s.config.subscribe_to_webhooks(req,
+    RetryConfig('backoff', BackoffStrategy(1, 50, 1.1, 100), False))
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```python
+import speakeasybar
+from speakeasybar.models import operations, shared
+from speakeasybar.utils import BackoffStrategy, RetryConfig
+
+s = speakeasybar.Speakeasybar(
+    retry_config=RetryConfig('backoff', BackoffStrategy(1, 50, 1.1, 100), False)
+    security=shared.Security(
+        api_key="<YOUR_API_KEY>",
+    ),
+)
+
+req = [
+    operations.RequestBody(),
+]
+
+res = s.config.subscribe_to_webhooks(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+<!-- End Retries [retries] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
