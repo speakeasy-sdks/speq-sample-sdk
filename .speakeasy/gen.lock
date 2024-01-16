@@ -4,9 +4,9 @@ management:
   docChecksum: f22d50ed7aa4956c14ae35514eb114c1
   docVersion: 1.0.0
   speakeasyVersion: internal
-  generationVersion: 2.228.1
-  releaseVersion: 3.3.1
-  configChecksum: 3fe44c0cf6cff03ff65f0cce8f9828a6
+  generationVersion: 2.233.2
+  releaseVersion: 3.3.2
+  configChecksum: cf10fc7358a8221264f5195dc4a7e5b3
   repoURL: https://github.com/speakeasy-sdks/speq-sample-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/speq-sample-sdk.git
@@ -21,7 +21,7 @@ features:
     inputOutputModels: 2.83.0
     methodSecurity: 2.82.0
     methodServerURLs: 2.82.1
-    retries: 2.82.0
+    retries: 2.82.1
     serverIDs: 2.81.1
 generatedFiles:
   - src/speakeasybar/sdkconfiguration.py
