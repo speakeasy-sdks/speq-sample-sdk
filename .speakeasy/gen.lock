@@ -3,17 +3,17 @@ id: a046f847-c46c-4e59-aa62-91f48ca709d9
 management:
   docChecksum: f22d50ed7aa4956c14ae35514eb114c1
   docVersion: 1.0.0
-  speakeasyVersion: internal
-  generationVersion: 2.275.4
-  releaseVersion: 5.1.0
-  configChecksum: c0d5c909be8e2f21262b0d36f64e73db
+  speakeasyVersion: 1.204.1
+  generationVersion: 2.279.1
+  releaseVersion: 5.2.0
+  configChecksum: dfd5222eb141788403e4625af7ef8720
   repoURL: https://github.com/speakeasy-sdks/speq-sample-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/speq-sample-sdk.git
 features:
   python:
     callbacks: 1.0.0
-    core: 4.5.0
+    core: 4.5.1
     errors: 2.81.8
     examples: 2.81.3
     flattening: 2.81.1
@@ -22,6 +22,7 @@ features:
     inputOutputModels: 2.83.1
     methodSecurity: 2.82.1
     methodServerURLs: 2.82.1
+    responseFormat: 0.1.0
     retries: 2.82.1
     serverIDs: 2.81.1
     webhooks: 1.0.0
@@ -33,6 +34,7 @@ generatedFiles:
   - src/speakeasybar/orders.py
   - src/speakeasybar/config.py
   - src/speakeasybar/sdk.py
+  - py.typed
   - pylintrc
   - setup.py
   - src/speakeasybar/__init__.py
