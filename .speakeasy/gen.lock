@@ -3,10 +3,10 @@ id: a046f847-c46c-4e59-aa62-91f48ca709d9
 management:
   docChecksum: f22d50ed7aa4956c14ae35514eb114c1
   docVersion: 1.0.0
-  speakeasyVersion: 1.204.1
-  generationVersion: 2.279.1
-  releaseVersion: 5.2.0
-  configChecksum: dfd5222eb141788403e4625af7ef8720
+  speakeasyVersion: 1.207.1
+  generationVersion: 2.280.6
+  releaseVersion: 5.2.1
+  configChecksum: 7e6b10a3c1aa33582fc3ecee7dbccddf
   repoURL: https://github.com/speakeasy-sdks/speq-sample-sdk.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-sdks/speq-sample-sdk.git
@@ -18,7 +18,7 @@ features:
     examples: 2.81.3
     flattening: 2.81.1
     globalSecurity: 2.83.4
-    globalServerURLs: 2.82.1
+    globalServerURLs: 2.82.2
     inputOutputModels: 2.83.1
     methodSecurity: 2.82.1
     methodServerURLs: 2.82.1
