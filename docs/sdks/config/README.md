@@ -1,4 +1,5 @@
-# config
+# Config
+(*config*)
 
 ### Available Operations
 
@@ -16,39 +17,37 @@ from speakeasybar.models import operations, shared
 
 s = speakeasybar.Speakeasybar(
     security=shared.Security(
-        api_key="",
+        api_key="<YOUR_API_KEY>",
     ),
 )
 
 req = [
-    operations.SubscribeToWebhooksRequestBody(
-        url='illum',
-        webhook=operations.SubscribeToWebhooksRequestBodyWebhook.STOCK_UPDATE,
-    ),
-    operations.SubscribeToWebhooksRequestBody(
-        url='vel',
-        webhook=operations.SubscribeToWebhooksRequestBodyWebhook.STOCK_UPDATE,
-    ),
-    operations.SubscribeToWebhooksRequestBody(
-        url='error',
-        webhook=operations.SubscribeToWebhooksRequestBodyWebhook.STOCK_UPDATE,
-    ),
+    operations.RequestBody(),
 ]
 
 res = s.config.subscribe_to_webhooks(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
+    pass
+
 ```
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `request`                                                            | [list[operations.SubscribeToWebhooksRequestBody]](../../models//.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [List[operations.RequestBody]](../../models/.md)                    | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
 
 ### Response
 
 **[operations.SubscribeToWebhooksResponse](../../models/operations/subscribetowebhooksresponse.md)**
+### Errors
 
+| Error Object      | Status Code       | Content Type      |
+| ----------------- | ----------------- | ----------------- |
+| errors.BadRequest | 400               | application/json  |
+| errors.APIError   | 5XX               | application/json  |
+| errors.SDKError   | 4x-5xx            | */*               |

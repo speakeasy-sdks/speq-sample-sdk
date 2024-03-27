@@ -1,4 +1,5 @@
-# drinks
+# Drinks
+(*drinks*)
 
 ## Overview
 
@@ -17,19 +18,21 @@ Get a drink by name, if authenticated this will include stock levels and product
 
 ```python
 import speakeasybar
-from speakeasybar.models import operations, shared
+from speakeasybar.models import shared
 
 s = speakeasybar.Speakeasybar(
     security=shared.Security(
-        api_key="",
+        api_key="<YOUR_API_KEY>",
     ),
 )
 
 
-res = s.drinks.get_drink(name='deserunt')
+res = s.drinks.get_drink(name='<value>')
 
 if res.drink is not None:
     # handle response
+    pass
+
 ```
 
 ### Parameters
@@ -42,7 +45,12 @@ if res.drink is not None:
 ### Response
 
 **[operations.GetDrinkResponse](../../models/operations/getdrinkresponse.md)**
+### Errors
 
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.APIError  | 5XX              | application/json |
+| errors.SDKError  | 4x-5xx           | */*              |
 
 ## list_drinks
 
@@ -52,19 +60,21 @@ Get a list of drinks, if authenticated this will include stock levels and produc
 
 ```python
 import speakeasybar
-from speakeasybar.models import operations, shared
+from speakeasybar.models import shared
 
 s = speakeasybar.Speakeasybar(
     security=shared.Security(
-        api_key="",
+        api_key="<YOUR_API_KEY>",
     ),
 )
 
 
-res = s.drinks.list_drinks(drink_type=shared.DrinkType.BEER)
+res = s.drinks.list_drinks(drink_type=shared.DrinkType.SPIRIT)
 
-if res.drinks is not None:
+if res.classes is not None:
     # handle response
+    pass
+
 ```
 
 ### Parameters
@@ -72,9 +82,15 @@ if res.drinks is not None:
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `drink_type`                                                                 | [Optional[shared.DrinkType]](../../models/shared/drinktype.md)               | :heavy_minus_sign:                                                           | The type of drink to filter by. If not provided all drinks will be returned. |
+| `server_url`                                                                 | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | An optional server URL to use.                                               |
 
 
 ### Response
 
 **[operations.ListDrinksResponse](../../models/operations/listdrinksresponse.md)**
+### Errors
 
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.APIError  | 5XX              | application/json |
+| errors.SDKError  | 4x-5xx           | */*              |
